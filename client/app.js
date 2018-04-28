@@ -11,8 +11,7 @@ import App from './App.jsx';
 const root = document.getElementById('root');
 
 const render = Component => {
-    const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hyrate;
-    renderMethod(
+    ReactDOM.hydrate(
         <AppContainer>
             <Component/>
         </AppContainer>,
