@@ -1,12 +1,12 @@
 /**
  *Create by 李翔 on 2018/4/27.
  */
-'use strict';
 
 const path = require('path');
 const webpack = require("webpack");
 const HTMLPlugin = require('html-webpack-plugin');
 
+//是否开启开发环境
 const isDev = process.env.NODE_ENV === 'development';
 
 const config = {
@@ -20,6 +20,14 @@ const config = {
     },
     module: {
         rules: [
+            {
+                enforce: 'pre',
+                test: /.(js|jsx)$/,
+                loader: 'eslint-loader',
+                exclude: [
+                    path.resolve(__dirname, '../node_modules')
+                ]
+            },
             {
                 test: /.jsx$/,
                 loader: 'babel-loader'
@@ -41,6 +49,8 @@ const config = {
     ]
 };
 
+
+//在开发环境下dev-server的配置
 if (isDev) {
     config.entry = {
       app: [
