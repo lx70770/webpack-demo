@@ -1,4 +1,5 @@
 const express = require('express');
+const favicon = require('serve-favicon');
 const ReactSSR = require('react-dom/server');
 const path = require('path');
 const fs = require('fs');
@@ -6,6 +7,10 @@ const fs = require('fs');
 const isDev = process.env.NODE_ENV === 'development';
 
 const app = express();
+
+
+/*再服务端使用网页icon*/
+app.use(favicon(path.join(__dirname, '../static/favicon.ico')));
 
 //在生产环境下的服务端渲染设置
 if (!isDev) {
